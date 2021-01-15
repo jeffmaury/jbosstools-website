@@ -304,8 +304,8 @@ task :actions do
     puts '## Tagging repo'
     system("git config --global user.email 'tools@jboss.org'")
     system("git config --global user.name 'JBoss Tools CI'")
-    system('git tag $GIT_TAG -a -m "Published to production from GitHub Actions build $GITHUB_RUN_ID"')
-    system("git push origin $GIT_TAG")
+    system("git tag " + ENV['GIT_TAG'] + " -a -m \"Published to production from GitHub Actions build " + ENV['GITHUB_RUN_ID'])
+    system("git push origin " + ENV['GIT_TAG'])
   end
   fail unless success
 end
