@@ -5,7 +5,7 @@ on:
     branches: [ $default-branch, 'production' ]
 
 jobs:
-  test:
+  deploy:
 
     runs-on: ubuntu-latest
 
@@ -16,7 +16,7 @@ jobs:
       with:
         ruby-version: 2.4.1
         bundler-cache: true
-    - name: Setenv
-      run: export GIT_TAG=build-$GITHUB_REF-$(date -u "+%Y-%m-%d-%H-%M-%S")-$GITHUB_RUN_ID
     - name: Generate site
-      run: bundle exec rake actions
+      run: |
+        export GIT_TAG=build-$GITHUB_REF-$(date -u "+%Y-%m-%d-%H-%M-%S")-$GITHUB_RUN_ID
+        bundle exec rake actions
