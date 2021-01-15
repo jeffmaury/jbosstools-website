@@ -271,13 +271,13 @@ task :actions do
   
   tag = false
 
-  if ENV['GITHUB_REF'].to_s.scan(/^production$/).length > 0
+  if ENV['GITHUB_REF'].to_s.scan(/production$/).length > 0
     tag = true
     puts 'Building production branch build.'
     profile = 'production'
     deploy_url = "tools@filemgmt.jboss.org:/www_htdocs/tools"
 
-  elsif ENV['GITHUB_REF'].to_s.scan(/^master$/).length > 0
+  elsif ENV['GITHUB_REF'].to_s.scan(/master$/).length > 0
    
     puts 'Building staging(master) branch build.'
     profile = 'staging'
@@ -297,7 +297,7 @@ task :actions do
   errorcheck
 
   puts "## Deploying website via rsync to #{deploy_url}"
-  //success = system("rsync -Pqr --protocol=28 --delete-after _site/* #{deploy_url}")
+  # success = system("rsync -Pqr --protocol=28 --delete-after _site/* #{deploy_url}")
   success = true
 
   if tag
