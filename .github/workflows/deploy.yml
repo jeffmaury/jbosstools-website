@@ -15,8 +15,9 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.4.1
-        bundler-cache: true
     - name: Generate site
       run: |
         export GIT_TAG=build-$GITHUB_REF-$(date -u "+%Y-%m-%d-%H-%M-%S")-$GITHUB_RUN_ID
+        gem install bundler
+        bundler install
         bundle exec rake actions
