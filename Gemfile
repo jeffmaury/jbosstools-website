@@ -24,6 +24,7 @@ gem 'coderay'
 gem 'html_press', '~> 0.8.1'
 gem 'git' # required to run the '-deploy' option
 gem 'coffee-script', '~> 2.2.0' 
+gem 'org-ruby', '>= 0.8'
 
 gem 'bootstrap-sass'
 gem 'compass'
