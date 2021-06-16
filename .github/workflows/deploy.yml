@@ -18,6 +18,13 @@ jobs:
       with:
         ruby-version: 2.4.1
         bundler-cache: true
+    - name: Set up SSH
+      run: |
+        echo "$SSH_KEY" >>~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo -e "Host filemgmt.jboss.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+      env:
+        SSH_KEY: ${{ secrets.DOWNLOAD_KEY }}
     - name: Generate site
       run: |
         branch_name=`basename $GITHUB_REF`
